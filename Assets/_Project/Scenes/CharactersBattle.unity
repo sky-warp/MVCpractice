@@ -401,8 +401,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 49121f00f5d577545b3bd74fbd7b4e9c, type: 2}
   _viewLeftParent: {fileID: 899072349}
   _viewRightParent: {fileID: 202997170}
-  _viewRightPrefab: {fileID: 4356373476375668495, guid: 03529f27e87e36a44ab976442031d841, type: 3}
-  _viewLeftPrefab: {fileID: 3570860184103589636, guid: d9027f895c1765746a40d217d1887ad1, type: 3}
+  _healthbarRightPrefab: {fileID: 4356373476375668495, guid: 03529f27e87e36a44ab976442031d841, type: 3}
+  _healthbarLeftPrefab: {fileID: 3570860184103589636, guid: d9027f895c1765746a40d217d1887ad1, type: 3}
   _leftCharacterSpawn: {fileID: 1831261809}
   _rightCharacterSpawn: {fileID: 875123885}
   resourcesFolder: 3DModels/

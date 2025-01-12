@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ConfigScript;
 using Model;
+using UnityEngine.Serialization;
 using View;
 using Random = UnityEngine.Random;
 
@@ -13,16 +14,14 @@ namespace Spawner
         [SerializeField] private CharacterContainer[] _characterConfigs;
         [SerializeField] private Transform _viewLeftParent;
         [SerializeField] private Transform _viewRightParent;
-        [SerializeField] private GameObject _viewRightPrefab;
-        [SerializeField] private GameObject _viewLeftPrefab;
+        [SerializeField] private GameObject _healthbarRightPrefab;
+        [SerializeField] private GameObject _healthbarLeftPrefab;
         [SerializeField] private Transform _leftCharacterSpawn;
         [SerializeField] private Transform _rightCharacterSpawn;
         [SerializeField] private string resourcesFolder;
 
         private List<Character> _spawnedCharacters = new();
         private CharacterContainer[] _tempContainer;
-        private BattleView _leftCharacterView;
-        private BattleView _rightCharacterView;
         private GameObject _leftCharacterPrefab;
         private GameObject _rightCharacterPrefab;
 
@@ -45,13 +44,10 @@ namespace Spawner
             _spawnedCharacters.Add(leftCharacter);
             _spawnedCharacters.Add(rightCharacter);
 
-            var viewItemLeft = Instantiate(_viewLeftPrefab, _viewLeftParent);
+            var viewItemLeft = Instantiate(_healthbarLeftPrefab, _viewLeftParent);
             viewItemLeft.GetComponent<BattleView>().Initialize(leftCharacter);
-            var viewItemRight = Instantiate(_viewRightPrefab, _viewRightParent);
+            var viewItemRight = Instantiate(_healthbarRightPrefab, _viewRightParent);
             viewItemRight.GetComponent<BattleView>().Initialize(rightCharacter);
-
-            _leftCharacterView = viewItemLeft.GetComponent<BattleView>();
-            _rightCharacterView = viewItemRight.GetComponent<BattleView>();
 
             GameObject[] prefabs = Resources.LoadAll<GameObject>(resourcesFolder);
 
@@ -59,8 +55,6 @@ namespace Spawner
             _rightCharacterPrefab = prefabs[Random.Range(0, prefabs.Length - 1)];
 
             Characters = _spawnedCharacters;
-            LeftCharacterView = _leftCharacterView;
-            RightCharacterView = _rightCharacterView;
 
             Instantiate(_leftCharacterPrefab, _leftCharacterSpawn);
             Instantiate(_rightCharacterPrefab, _rightCharacterSpawn);
@@ -94,8 +88,6 @@ namespace Spawner
             }
 
             Characters = null;
-            _leftCharacterView = null;
-            _rightCharacterView = null;
             _leftCharacterPrefab = null;
             _rightCharacterPrefab = null;
         }

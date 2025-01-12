@@ -16,20 +16,20 @@ namespace View
         {
             _healthbar = gameObject.GetComponent<Image>();
             _characterData = data;
-            _healthbar.fillAmount = _characterData.Health;
             _characterMaxHealth = data.Health;
 
-            data.CharacterAttacked += ShowFloatingText;
+            _characterData.CharacterAttacked += ShowFloatingText;
+            _characterData.DamageTaken += UpdateHealth;
         }
 
         private void OnDisable()
         {
             _characterData.CharacterAttacked -= ShowFloatingText;
+            _characterData.DamageTaken -= UpdateHealth;
         }
 
-        public void UpdateHealth(Character data)
+        public void UpdateHealth(int currentHealth)
         {
-            int currentHealth = data.Health;
             _healthbar.fillAmount = (float)currentHealth / _characterMaxHealth;
         }
 

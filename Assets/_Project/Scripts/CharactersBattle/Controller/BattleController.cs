@@ -31,17 +31,15 @@ namespace Controller
             var leftCharacter = _spawner.Characters[0];
             var rightCharacter = _spawner.Characters[1];
 
-            StartCoroutine(Battle(leftCharacter, rightCharacter, _spawner.RightCharacterView,
-                _spawner.LeftCharacterView));
+            StartCoroutine(Battle(leftCharacter, rightCharacter));
         }
 
-        private IEnumerator Battle(Character leftCharacter, Character rightCharacter, BattleView rightCharacterView,
-            BattleView leftCharacterView)
+        private IEnumerator Battle(Character leftCharacter, Character rightCharacter)
         {
             while (leftCharacter.IsAlive && rightCharacter.IsAlive)
             {
-                leftCharacter.PerformAttack(rightCharacter, rightCharacterView);
-                rightCharacter.PerformAttack(leftCharacter, leftCharacterView);
+                leftCharacter.PerformAttack(rightCharacter);
+                rightCharacter.PerformAttack(leftCharacter);
 
                 yield return new WaitForSeconds(1f);
 

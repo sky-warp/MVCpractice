@@ -24,6 +24,7 @@ namespace Model
         public bool IsStunned = false;
         public bool IsAlive => Health > 0;
         public event Action CharacterAttacked;
+        public event Action<int> DamageTaken;
 
         public Character(CharacterContainer characterConfig)
         {
@@ -42,7 +43,7 @@ namespace Model
             CurrentStats = BaseStats;
         }
 
-        public void PerformAttack(Character enemy, BattleView enemyView)
+        public void PerformAttack(Character enemy)
         {
             if (CurrentStats.IsStunned)
                 return;
@@ -62,9 +63,8 @@ namespace Model
                 }
             }
 
-            enemy.TakeDamage(Damage);
             CharacterAttacked?.Invoke();
-            enemyView.UpdateHealth(enemy);
+            enemy.TakeDamage(Damage);
         }
 
         public void TakeDamage(int damage)
@@ -73,6 +73,8 @@ namespace Model
                 Health -= damage;
             else
                 Health = 0;
+            
+            DamageTaken?.Invoke(Health);
         }
 
         public void ApplySpecialEffect(Character target)
