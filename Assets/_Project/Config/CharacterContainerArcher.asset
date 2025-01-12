@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Value>k__BackingField:
     <CharacterName>k__BackingField: Robin
-    <Health>k__BackingField: 90
+    <Health>k__BackingField: 100
     <Damage>k__BackingField: 15
     <SpecialEffect>k__BackingField: {fileID: 11400000, guid: d8b11f1a8c3c97d43a8f500580da903b, type: 2}
     IsStunned: 0
