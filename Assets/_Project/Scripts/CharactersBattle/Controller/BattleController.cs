@@ -3,6 +3,7 @@ using Model;
 using View;
 using Spawner;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Controller
 {
@@ -10,15 +11,11 @@ namespace Controller
     {
         [SerializeField] private CharacterSpawner _spawner;
         [SerializeField] private Transform _winnerScreenParent;
-        [SerializeField] private GameObject _winnerScreenPrefab;
-
-        private WinnerView _winnerView;
-        private GameObject _restartGameInstance;
-
+        [SerializeField] private WinnerView _winnerScreen;
+        
         private void Awake()
         {
             StartGame();
-            _winnerView = _winnerScreenPrefab.GetComponent<WinnerView>();
         }
 
         private void OnDisable()
@@ -57,8 +54,8 @@ namespace Controller
                         Debug.Log("Winner is null");
                     else
                     {
-                        _winnerView.Initialize(winner);
-                        _restartGameInstance = _winnerView.ShowWinnerScreen(_winnerScreenPrefab, _winnerScreenParent);
+                        _winnerScreen.Initialize(winner);
+                        var _restartGameInstance = _winnerScreen.ShowWinnerScreen(_winnerScreen.gameObject, _winnerScreenParent);
 
                         var eventListner = _restartGameInstance.GetComponent<WinnerView>();
                         eventListner.RestartGame += StartGame;

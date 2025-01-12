@@ -333,7 +333,7 @@ Canvas:
   m_GameObject: {fileID: 233370198}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawner: {fileID: 385149120}
   _winnerScreenParent: {fileID: 233370202}
-  _winnerScreenPrefab: {fileID: 4226985575585236941, guid: 1f138445b33e0414aa8d965feb878288, type: 3}
+  _winnerScreen: {fileID: 8931778800934037063, guid: 1f138445b33e0414aa8d965feb878288, type: 3}
 --- !u!4 &480500841
 Transform:
   m_ObjectHideFlags: 0
