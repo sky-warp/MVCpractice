@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Model;
+using TMPro;
 
 namespace View
 {
@@ -35,8 +36,10 @@ namespace View
 
         public void ShowFloatingText()
         {
-            var go = Instantiate(_floatingTextPrefab, transform.localPosition, Quaternion.identity, transform);
-            go.GetComponent<TextMesh>().text = _characterData.CurrentStats.CurrentDamage.ToString();
+            Vector3 damageTextPosition = new Vector3(transform.position.x, transform.position.y - 80f, transform.position.z);
+            
+            var go = Instantiate(_floatingTextPrefab, damageTextPosition, Quaternion.identity, transform);
+            go.GetComponent<TextMeshProUGUI>().text = _characterData.CurrentStats.CurrentDamage.ToString();
         }
     }
 }
